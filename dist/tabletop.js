@@ -1,3 +1,4 @@
+/*! tabletop v1.6.2 | (c) 2020  | MIT License | https://github.com/jsoma/tabletop.git */
 (function() {
   "use strict";
 
@@ -301,7 +302,7 @@
       var self = this;
 
       this.log("Fetching", this.endpoint + path);
-      request({ url: this.endpoint + path, json: true }, function(
+      request({ url: this.endpoint + path, json: true }, (function(
         err,
         resp,
         body
@@ -310,7 +311,7 @@
           return console.error(err);
         }
         callback.call(self, body);
-      });
+      }));
     },
 
     /*
@@ -574,9 +575,9 @@
         .replace("/feeds/list/", "/feeds/cells/")
         .replace("https://spreadsheets.google.com", "");
       var that = this;
-      this.tabletop.requestData(cellurl, function(data) {
+      this.tabletop.requestData(cellurl, (function(data) {
         that.loadPrettyColumns(data);
-      });
+      }));
     },
 
     beforeReady: function() {
@@ -673,9 +674,9 @@
     //don't just use inNodeJS, we may be in Browserify
     module.exports = Tabletop;
   } else if (typeof define === "function" && define.amd) {
-    define(function() {
+    define((function() {
       return Tabletop;
-    });
+    }));
   } else {
     window.Tabletop = Tabletop;
   }

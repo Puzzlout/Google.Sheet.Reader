@@ -1,31 +1,35 @@
 <!DOCTYPE html>
 <html>
-  <body>
 
-    <p id="food">Waiting for 3 seconds...</p>
+<body>
 
-    <script type="text/javascript" src="../../src/tabletop.js"></script>
-    <script type="text/javascript">
-      var public_spreadsheet_url = 'https://docs.google.com/spreadsheet/pub?hl=en_US&hl=en_US&key=0AmYzu_s7QHsmdDNZUzRlYldnWTZCLXdrMXlYQzVxSFE&output=html';
+  <p id="food">Waiting for 3 seconds...</p>
 
-      var tabletop = Tabletop.init( { key: public_spreadsheet_url,
-                         callback: showInfo,
-                         wait: true,
-                         simpleSheet: true } )
+  <script type="text/javascript" src="../../dist/tabletop.js"></script>
+  <script type="text/javascript">
+    var public_spreadsheet_url = 'https://docs.google.com/spreadsheet/pub?hl=en_US&hl=en_US&key=0AmYzu_s7QHsmdDNZUzRlYldnWTZCLXdrMXlYQzVxSFE&output=html';
 
-      setTimeout(function() {
-        console.log("Fetching")
-        tabletop.fetch()
-      }, 3000)
+    var tabletop = Tabletop.init({
+      key: public_spreadsheet_url,
+      callback: showInfo,
+      wait: true,
+      simpleSheet: true
+    })
 
-      function showInfo(data) {
-        // data comes through as a simple array since simpleSheet is turned on
-        alert("Successfully processed " + data.length + " rows!")
-        document.getElementById("food").innerHTML = "<strong>Foods:</strong> " + [ data[0].Name, data[1].Name, data[2].Name ].join(", ");
-        console.log(data);
-      }
+    setTimeout(function () {
+      console.log("Fetching")
+      tabletop.fetch()
+    }, 3000)
 
-      document.write("The published spreadsheet is located at <a target='_new' href='" + public_spreadsheet_url + "'>" + public_spreadsheet_url + "</a>");        
-    </script>
-  </body>
+    function showInfo(data) {
+      // data comes through as a simple array since simpleSheet is turned on
+      alert("Successfully processed " + data.length + " rows!")
+      document.getElementById("food").innerHTML = "<strong>Foods:</strong> " + [data[0].Name, data[1].Name, data[2].Name].join(", ");
+      console.log(data);
+    }
+
+    document.write("The published spreadsheet is located at <a target='_new' href='" + public_spreadsheet_url + "'>" + public_spreadsheet_url + "</a>");
+  </script>
+</body>
+
 </html>
