@@ -20,12 +20,12 @@
   "gitHead": "fdb1c3ee3bc0f7f3be6ab223a56f9f050fe32496",
   "devDependencies": {
     "chai": "^3.5.0",
-    "grunt": "*",
+    "grunt": "^1.1.0",
     "grunt-contrib-connect": "*",
     "grunt-contrib-jshint": "^1.1.0",
     "grunt-contrib-uglify": "^2.0.0",
     "jshint-stylish": "^2.0.0",
-    "mocha": "^6.2.1",
+    "mocha": "^7.1.1",
     "uglifyjs": "^2.4.10"
   },
   "dependencies": {
