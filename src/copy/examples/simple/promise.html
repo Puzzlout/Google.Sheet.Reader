@@ -5,19 +5,16 @@
 
   <p id="food"></p>
 
-  <script type="text/javascript" src="../../dist/tabletop.js"></script>
+  <script type="text/javascript" src="../../tabletop.js"></script>
   <script type="text/javascript">
-    var public_spreadsheet_url = 'THIS_WONT_WORK';
+    var public_spreadsheet_url = 'https://docs.google.com/spreadsheet/pub?hl=en_US&hl=en_US&key=0AmYzu_s7QHsmdDNZUzRlYldnWTZCLXdrMXlYQzVxSFE&output=html';
 
     function init() {
       Tabletop.init({
           key: public_spreadsheet_url,
-          callback: showInfo,
-          error: function () {
-            document.getElementById("food").innerHTML = "There was an error!! That's what we expected, so it's ok.")
-        },
-        simpleSheet: true
-      });
+          simpleSheet: true
+        })
+        .then(showInfo)
     }
 
     window.addEventListener('DOMContentLoaded', init)

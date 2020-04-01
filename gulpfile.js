@@ -6,6 +6,8 @@
 var settings = {
   clean: true,
   scripts: true,
+  styles: true,
+  copy: true,
   reload: true
 };
 
@@ -17,10 +19,20 @@ var paths = {
   input: "src/",
   output: "dist/",
   scripts: {
-    input: ["src/*"],
+    input: ["src/js/*"],
     polyfills: ".polyfill.js",
     output: "dist/"
-  }
+  },
+  styles: {
+    input: "src/sass/**/*.{scss,sass}",
+    output: "dist/css/",
+    concat: "app.min.css"
+  },
+  copy: {
+    input: "src/copy/**/*",
+    output: "dist/"
+  },
+  reload: "./dist/"
 };
 
 /**
@@ -55,8 +67,14 @@ var package = require("./package.json");
 // Scripts
 var jshint = require("gulp-jshint");
 var stylish = require("jshint-stylish");
+var concat = require("gulp-concat-2020");
 var uglify = require("gulp-terser");
 var optimizejs = require("gulp-optimize-js");
+// Styles
+var sass = require("gulp-sass");
+var postcss = require("gulp-postcss");
+var prefix = require("autoprefixer");
+var minify = require("cssnano");
 
 // BrowserSync
 var browserSync = require("browser-sync"); //ok
@@ -141,6 +159,50 @@ var lintScripts = function(done) {
     .pipe(jshint.reporter("jshint-stylish"));
 };
 
+// Process, lint, and minify Sass files
+var buildStyles = function(done) {
+  // Make sure this feature is activated before running
+  if (!settings.styles) return done();
+
+  // Run tasks on all Sass files
+  return src(paths.styles.input)
+    .pipe(
+      sass({
+        outputStyle: "expanded",
+        sourceComments: true
+      })
+    )
+    .pipe(
+      postcss([
+        prefix({
+          cascade: true,
+          remove: true
+        })
+      ])
+    )
+    .pipe(header(banner.main, { package: package }))
+    .pipe(dest(paths.styles.output))
+    .pipe(rename({ suffix: ".min" }))
+    .pipe(
+      postcss([
+        minify({
+          discardComments: {
+            removeAll: true
+          }
+        })
+      ])
+    )
+    .pipe(concat(paths.styles.concat))
+    .pipe(dest(paths.styles.output));
+};
+// Copy static files into output folder
+var copyFiles = function(done) {
+  // Make sure this feature is activated before running
+  if (!settings.copy) return done();
+
+  // Copy static files
+  return src(paths.copy.input).pipe(dest(paths.copy.output));
+};
 // Watch for changes to the src directory
 var startServer = function(done) {
   // Make sure this feature is activated before running
@@ -176,7 +238,10 @@ var watchSource = function(done) {
 
 // Default task
 // gulp
-exports.default = series(cleanDist, parallel(buildScripts, lintScripts));
+exports.default = series(
+  cleanDist,
+  parallel(buildScripts, lintScripts, buildStyles, copyFiles)
+);
 
 // Watch and reload
 // gulp watch

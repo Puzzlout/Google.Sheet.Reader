@@ -1,33 +1,36 @@
 {
-  "name": "tabletop",
-  "version": "1.6.2",
-  "description": "**Tabletop.js** takes a Google Spreadsheet and makes it easily accessible through JavaScript. With zero dependencies!",
+  "name": "gsheet2json",
+  "version": "1.0.0",
+  "description": "**GoogleSheet2Json** takes a Google Spreadsheet and makes it easily accessible through JavaScript. With zero dependencies!",
   "main": "src/tabletop.js",
   "directories": {
     "example": "examples"
   },
   "scripts": {
-    "test": "node node_modules/mocha/bin/mocha --timeout 10000",
-    "uglify": "node node_modules/uglify-js/bin/uglifyjs src/tabletop.js > src/tabletop.min.js "
+    "test": "node node_modules/mocha/bin/mocha --timeout 10000"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/jsoma/tabletop.git"
+    "url": "https://github.com/Puzzlout/GoogleSheet2Json.git"
   },
-  "author": "Jonathan Soma <jonathan.soma@gmail.com>",
+  "author": "Jeremie Litzler <puzzlout@gmail.com>",
   "license": "MIT",
   "readmeFilename": "README.md",
-  "gitHead": "fdb1c3ee3bc0f7f3be6ab223a56f9f050fe32496",
   "devDependencies": {
+    "autoprefixer": "^9.7.5",
     "browser-sync": "^2.26.7",
     "chai": "^3.5.0",
+    "cssnano": "^4.1.10",
     "del": "^5.1.0",
     "gulp": "^4.0.2",
+    "gulp-concat-2020": "^3.0.1",
     "gulp-flatmap": "^1.0.2",
     "gulp-header": "^2.0.9",
     "gulp-jshint": "^2.1.0",
     "gulp-optimize-js": "^1.1.0",
+    "gulp-postcss": "^8.0.0",
     "gulp-rename": "^2.0.0",
+    "gulp-sass": "^4.0.2",
     "gulp-terser": "^1.2.0",
     "jshint": "^2.11.0",
     "jshint-stylish": "^2.2.1",

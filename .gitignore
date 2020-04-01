@@ -2,3 +2,7 @@ node_modules
 .vscode
 .DS_Store
 *.swp
+dist/examples
+dist/css
+dist/index.html
+dist/img

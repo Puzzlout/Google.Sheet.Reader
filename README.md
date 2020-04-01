@@ -1,8 +1,8 @@
-# **Google.Sheet.Reader** (inspired from "TableTop", gives Google Sheets legs)
+# **GoogleSheet2Json** (inspired from "[TableTop](https://github.com/jsoma/tabletop)") allows to use Google Sheets as a simple CMS
 
-**Tabletop.js** takes a Google Spreadsheet and makes it easily accessible through JavaScript. With zero dependencies! If you've ever wanted to get JSON from a Google Spreadsheet without jumping through a thousand hoops, welcome home.
+**GoogleSheet2Json** takes a Google Spreadsheet and makes it easily accessible through JavaScript. With zero dependencies! If you've ever wanted to get JSON from a Google Spreadsheet without jumping through a thousand hoops, welcome home.
 
-Tabletop.js easily integrates Google Spreadsheets with templating systems and anything else that is hip and cool. It will also help you make new friends and play jazz piano.
+GoogleSheet2Json easily integrates Google Spreadsheets with templating systems and anything else that is hip and cool. It will also help you make new friends and play jazz piano.
 
 _Build status here_
 

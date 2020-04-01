@@ -1,4 +1,4 @@
-/*! tabletop v1.6.2 | (c) 2020  | MIT License | https://github.com/jsoma/tabletop.git */
+/*! gsheet2json v1.0.0 | (c) 2020  | MIT License | https://github.com/Puzzlout/GoogleSheet2Json.git */
 (function() {
   "use strict";
 
