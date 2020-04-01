@@ -4,7 +4,7 @@
 
 GoogleSheet2Json easily integrates Google Spreadsheets with templating systems and anything else that is hip and cool. It will also help you make new friends and play jazz piano.
 
-_Build status here_
+[![Netlify Status](https://api.netlify.com/api/v1/badges/66b48dd5-1c14-4022-9c48-94810d193940/deploy-status)](https://app.netlify.com/sites/gsheets2json/deploys)
 
 ## Like how easy?
 
