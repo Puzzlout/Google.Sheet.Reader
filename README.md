@@ -1,12 +1,12 @@
-# **Tabletop.js** (gives spreadsheets legs)
+# **Google.Sheet.Read** (formaly "TableTop", gives Google Sheets legs)
 
 **Tabletop.js** takes a Google Spreadsheet and makes it easily accessible through JavaScript. With zero dependencies! If you've ever wanted to get JSON from a Google Spreadsheet without jumping through a thousand hoops, welcome home.
 
 Tabletop.js easily integrates Google Spreadsheets with templating systems and anything else that is hip and cool. It will also help you make new friends and play jazz piano.
 
-[![Build Status](https://travis-ci.org/jsoma/tabletop.svg?branch=master)](https://travis-ci.org/jsoma/tabletop)
+_Build status here_
 
-### Like how easy?
+## Like how easy?
 
 **Step One:** make a Google Spreadsheet and "Publish to Web." It doesn't matter what publishing method you pick.
 
@@ -14,42 +14,48 @@ Tabletop.js easily integrates Google Spreadsheets with templating systems and an
 
 ```js
 function init() {
-  Tabletop.init( { key: 'https://docs.google.com/spreadsheets/d/0AmYzu_s7QHsmdDNZUzRlYldnWTZCLXdrMXlYQzVxSFE/pubhtml',
-                    callback: function(data, tabletop) { 
-                      console.log(data)
-                    },
-                    simpleSheet: true } )
+  Tabletop.init({
+    key:
+      "https://docs.google.com/spreadsheets/d/0AmYzu_s7QHsmdDNZUzRlYldnWTZCLXdrMXlYQzVxSFE/pubhtml",
+    callback: function(data, tabletop) {
+      console.log(data);
+    },
+    simpleSheet: true
+  });
 }
-window.addEventListener('DOMContentLoaded', init)
+window.addEventListener("DOMContentLoaded", init);
 ```
 
 **Step Two, modern-er version:** We've moved to the future (aka like a decade ago) by supporting promises.
 
 ```js
 function init() {
-  Tabletop.init( {
-    key: 'https://docs.google.com/spreadsheets/d/0AmYzu_s7QHsmdDNZUzRlYldnWTZCLXdrMXlYQzVxSFE/pubhtml',
-    simpleSheet: true }
-  ).then(function(data, tabletop) { 
-    console.log(data)
-  })
+  Tabletop.init({
+    key:
+      "https://docs.google.com/spreadsheets/d/0AmYzu_s7QHsmdDNZUzRlYldnWTZCLXdrMXlYQzVxSFE/pubhtml",
+    simpleSheet: true
+  }).then(function(data, tabletop) {
+    console.log(data);
+  });
 }
-window.addEventListener('DOMContentLoaded', init)
+window.addEventListener("DOMContentLoaded", init);
 ```
 
 **Step Three:** Enjoy your data!
 
 ```js
-[ { name: "Carrot", category: "Vegetable", healthiness: "Adequate" }, 
-  { name: "Pork Shoulder", category: "Meat", healthiness: "Questionable" }, 
-  { name: "Bubblegum", category: "Candy", healthiness: "Super High"} ]
+[
+  { name: "Carrot", category: "Vegetable", healthiness: "Adequate" },
+  { name: "Pork Shoulder", category: "Meat", healthiness: "Questionable" },
+  { name: "Bubblegum", category: "Candy", healthiness: "Super High" }
+];
 ```
 
 Yes, it's that easy.
 
 **NOTE:** If your share URL has a `/d/e` in it, try refreshing the page to see if it goes away. If it doesn't, [try this](#if-your-publish-to-web-url-doesnt-work).
 
-# Getting Started
+## Getting Started
 
 ### 1) Publishing your Google Sheet
 
@@ -61,10 +67,8 @@ Make a [Google Spreadsheet](http://drive.google.com). Give it some column header
     Carrot          Vegetable  Adequate
     Pork Shoulder   Meat       Questionable
     Bubblegum       Candy      Super High
-  
-Now go up to the `File` menu and pick `Publish to the web`. Fiddle with the options, then click `Start publishing`. A URL will appear, something like `https://docs.google.com/spreadsheets/d/e/2PACX-1vQ2qq5UByYNkhsujdrWlDXtpSUhh7ovl0Ak6pyY3sWZqEaWS2lJ0iuqcag8iDLsoTuZ4XTiaEBtbbi0/pubhtml` .
 
-**IGNORE THIS URL!** You used to be able to use it, you can't anymore (you still need to do this step, though).
+Now go up to the `File` menu and pick `Publish to the web`. Fiddle with the options, then click `Start publishing`. A URL will appear, something like `https://docs.google.com/spreadsheets/d/1pVp5uwv405TRNBnBXhZPJzstx614fV8KQ3TZvaLzNAc/pubhtml` .
 
 Now that you've published your sheet, you now need to share it, too.
 
@@ -74,79 +78,92 @@ Now that you've published your sheet, you now need to share it, too.
 4. Make sure **Access: Anyone** says **Can view**, since you don't want strangers editing your data
 5. Click **Save**
 
-Copy the **Link to Share**. Your URL should look something like `https://docs.google.com/spreadsheets/d/1Io6W5XitNvifEXER9ECTsbHhAjXsQLq6VEz7kSPDPiQ/edit?usp=sharing`. It should **not** have a `/d/e` in it.
+Copy the **Link to Share**. Your URL should look something like `https://docs.google.com/spreadsheets/d/1pVp5uwv405TRNBnBXhZPJzstx614fV8KQ3TZvaLzNAc/edit?usp=sharing`. It should **not** have a `/d/e` in it.
 
 ### 2) Setting up Tabletop
 
-_Now you're going to feed your spreadsheet into Tabletop_
+**TODO : update this section to use npm package.**
+
+_Now you're going to feed your spreadsheet into Tabletop._
 
 Include the Tabletop JavaScript file in your HTML, then try the following, substituting your URL for `publicSpreadsheetUrl`
 
-    <script src='https://cdnjs.cloudflare.com/ajax/libs/tabletop.js/1.5.1/tabletop.min.js'></script>
-    <script type='text/javascript'>    
-      var publicSpreadsheetUrl = 'https://docs.google.com/spreadsheets/d/1sbyMINQHPsJctjAtMW0lCfLrcpMqoGMOJj6AN-sNQrc/pubhtml';
+```html
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tabletop.js/1.5.1/tabletop.min.js"></script>
+<script type="text/javascript">
+  var publicSpreadsheetUrl =
+    "https://docs.google.com/spreadsheets/d/1sbyMINQHPsJctjAtMW0lCfLrcpMqoGMOJj6AN-sNQrc/pubhtml";
 
-      function init() {
-        Tabletop.init( { key: publicSpreadsheetUrl,
-                         callback: showInfo,
-                         simpleSheet: true } )
-      }
+  function init() {
+    Tabletop.init({
+      key: publicSpreadsheetUrl,
+      callback: showInfo,
+      simpleSheet: true
+    });
+  }
 
-      function showInfo(data, tabletop) {
-        alert('Successfully processed!')
-        console.log(data);
-      }
+  function showInfo(data, tabletop) {
+    alert("Successfully processed!");
+    console.log(data);
+  }
 
-      window.addEventListener('DOMContentLoaded', init)
-    </script>
+  window.addEventListener("DOMContentLoaded", init);
+</script>
+```
 
-After Tabletop reads your Sheet, it hops to the `showInfo` function with your data. Open up your console and check out the data it retrieved. All of those rows were turned right into objects! **See how easy that was?** 
+After Tabletop reads your Sheet, it hops to the `showInfo` function with your data. Open up your console and check out the data it retrieved. All of those rows were turned right into objects! **See how easy that was?**
 
-### 3) Honestly, that's it.
+### 3) Honestly, that's it
 
 Check out the reference and the examples, but basically you're set. The only thing to think about right _now_ is if you want to deal with multiple sheets you can get rid of `simpleSheet: true` (more on that later).
 
 You might also be interested in the publishing/republishing/publish-as-it-changes aspects of Google Spreadsheets, but you'll need to google that for any specifics.
 
 ## A note on node
+
 To use this in a node environment:
 
-```
+```sh
 npm install tabletop -save
 ```
 
 Copy and paste this in your `index.js` file:
 
 ```js
- const Tabletop = require('tabletop');
+const Tabletop = require("tabletop");
 
- var publicSpreadsheetUrl = 'URL OF SPREADSHEET AS YOU FIND IN THE BROWSER ADDRESS BAR';
+var publicSpreadsheetUrl =
+  "URL OF SPREADSHEET AS YOU FIND IN THE BROWSER ADDRESS BAR";
 
 function init() {
-    Tabletop.init( { key: publicSpreadsheetUrl,
-                     callback: showInfo,
-                     simpleSheet: false } )
-  }
+  Tabletop.init({
+    key: publicSpreadsheetUrl,
+    callback: showInfo,
+    simpleSheet: false
+  });
+}
 
- function showInfo(data, tabletop) {
+function showInfo(data, tabletop) {
   // do something with the data
   console.log(JSON.stringify(data, null, 2));
 }
 
 //initialise and kickstart the whole thing.
-init()
+init();
 ```
 
-# Reference
+## Reference
 
-## Tabletop initialization
+### Tabletop initialization
 
 The simplest Tabletop initialization works like this:
 
-    var tabletop = Tabletop.init({ 
-      key: '1sbyMINQHPsJctjAtMW0lCfLrcpMqoGMOJj6AN-sNQrc', 
-      callback: showInfo 
-    })
+```js
+var tabletop = Tabletop.init({
+  key: "1sbyMINQHPsJctjAtMW0lCfLrcpMqoGMOJj6AN-sNQrc",
+  callback: showInfo
+});
+```
 
 You pass in either `key` as the actual spreadsheet key, or just the full published-spreadsheet URL.
 
@@ -154,7 +171,7 @@ You pass in either `key` as the actual spreadsheet key, or just the full publish
 
 **Depending on how recently you've published your spreadsheet, your `key` comes from different places.** Either the spreadsheet's URL in the address bar, the Publish URL, or the Share URL. [Read this](https://github.com/jsoma/tabletop#if-your-publish-to-web-url-doesnt-work)
 
-## Tabletop initialization options
+### Tabletop initialization options
 
 #### key
 
@@ -190,15 +207,15 @@ You pass in either `key` as the actual spreadsheet key, or just the full publish
 
 For example:
 
-````javascript
+```javascript
  postProcess: function(element) {
    // Combine first and last name into a new column
    element["full_name"] = element["first_name"] + " " + element["last_name"];
-   
+
    // Convert string date into Date date
    element["timestamp"] = Date.parse(element["displaydate"]);
- } 
-````
+ }
+```
 
 #### wanted
 
@@ -226,7 +243,7 @@ For example:
 
 #### ~~query~~
 
-~~`query` sends a [structured query](https://developers.google.com/google-apps/spreadsheets/#sending_a_structured_query_for_rows) along with the spreadsheet request, so you can ask for rows with `age > 55` and the like. Right now it's passed with *every request*, though, so if you're using multiple tables you'll end up in Problem City. It should work great with `simpleSheet` situations, though.~~ Doesn't want to work at the moment.
+~~`query` sends a [structured query](https://developers.google.com/google-apps/spreadsheets/#sending_a_structured_query_for_rows) along with the spreadsheet request, so you can ask for rows with `age > 55` and the like. Right now it's passed with _every request_, though, so if you're using multiple tables you'll end up in Problem City. It should work great with `simpleSheet` situations, though.~~ Doesn't want to work at the moment.
 
 #### debug
 
@@ -246,23 +263,23 @@ For example:
 
 #### prettyColumnNames
 
-`prettyColumnNames` can be true or false (default to true, unless `proxy` is enabled&dagger;). Since Google doesn't pass us exactly the same column names as in the header ('$ Processed' becomes 'processed'), it takes an extra request to correct them. If you don't want the extra request, you'll want to set it to `false`
+`prettyColumnNames` can be true or false (default to true, unless `proxy` is enabled&dagger;). Since Google doesn't pass us exactly the same column names as in the header ('\$ Processed' becomes 'processed'), it takes an extra request to correct them. If you don't want the extra request, you'll want to set it to `false`
 
 > &dagger; prettyColumnNames doesn't work with [Flatware](https://github.com/jsoma/flatware), is why we disable it with a proxy by default
 
-## Tabletop object attributes and methods
+### Tabletop object attributes and methods
 
 Once you're in the callback, you get the data **and** a `tabletop` object. That object is capable of all sorts of fun things.
 
 #### .sheets()
 
-`.sheets()` are the `Tabletop.Model`s that were populated, one per worksheet. You access a sheet by its name. 
+`.sheets()` are the `Tabletop.Model`s that were populated, one per worksheet. You access a sheet by its name.
 
 `.sheets(name)` is how you access a specific sheet. Say I have a worksheet called **Cats I Know**, I'll access it via `tabletop.sheets("Cats I Know")`
 
 #### .modelNames
 
-`.modelNames` are the names of the models [read: sheets] that Tabletop knows about. The sheet names do *not* reflect their ordering in the original spreadsheet.
+`.modelNames` are the names of the models [read: sheets] that Tabletop knows about. The sheet names do _not_ reflect their ordering in the original spreadsheet.
 
 #### .foundSheetNames
 
@@ -280,7 +297,7 @@ Once you're in the callback, you get the data **and** a `tabletop` object. That 
 
 `.addWanted(name)` adds a sheet to the list that are updated with `.fetch`
 
-## Tabletop.Model attributes and methods
+### Tabletop.Model attributes and methods
 
 Tabletop refers to sheets as **Models,** which have a few extra abilities compared to the sheets-as-plain-objects.
 
@@ -308,7 +325,7 @@ Tabletop refers to sheets as **Models,** which have a few extra abilities compar
 
 `.toArray()` returns the rows of the table with numbered indices instead of named ones [ [ "Tom", 5] , [ "Liz", 12 ] ]
 
-## So what the hell do I do with this?
+### So what the hell do I do with this
 
 Imagine it's a read-only, JavaScript CMS that you can edit through Google Docs. It's like _Christmas_ up in here.
 
@@ -326,13 +343,13 @@ Source is, of course, in `/src`, and you can check it out in action in `examples
 
 ### Tabletop and AngularJS
 
-[Ændrew Rininsland (@aendrew)](http://www.github.com/aendrew) at [The Times and Sunday Times](http://www.github.com/times) has created a module that makes using Tabletop with [AngularJS](http://www.angularjs.org) extremely easy. It also includes a loader for  [angular-translate](https://angular-translate.github.io) that gives Tabletop the ability to provide i18n translation strings.
+[Ændrew Rininsland (@aendrew)](http://www.github.com/aendrew) at [The Times and Sunday Times](http://www.github.com/times) has created a module that makes using Tabletop with [AngularJS](http://www.angularjs.org) extremely easy. It also includes a loader for [angular-translate](https://angular-translate.github.io) that gives Tabletop the ability to provide i18n translation strings.
 
 Please see [times/angular-tabletop](http://www.github.com/times/angular-tabletop) for more details.
 
 ## Caching/Proxying Google Spreadsheets
 
-Yeah, Google Spreadsheets can sometimes be slow or sometimes be overwhelmed or *maybe* one day Google will just up and disappear on us. So Tabletop.js now supports fetching your data from elsewhere, using options like `endpoint` and `proxy`.
+Yeah, Google Spreadsheets can sometimes be slow or sometimes be overwhelmed or _maybe_ one day Google will just up and disappear on us. So Tabletop.js now supports fetching your data from elsewhere, using options like `endpoint` and `proxy`.
 
 `proxy` is the fun one, in that it rewrites your requests to be simpler-looking and plays nicely with the app & example I put together.
 
@@ -352,9 +369,9 @@ If you don't mind running around with Heroku and AWS, [Flatware](https://github.
 
 You can point `proxy` at anything you'd like as long as it has `KEY` and `KEY-SHEET_ID` files sitting in a directory. Feel free to host it on your own server! You can use `/caching/local.rb` if you want a pretty easy solution for generating the flat files.
 
-# Notes
+## Notes
 
-## Strange behavior
+### Strange behavior
 
 **Empty tables are trouble.** We can't get column names from them (c'mon, Google!), so don't be too confused when a table with 0 rows is coming back with an empty `.column_names` or your code starts throwing weird errors when processing the results.
 
@@ -364,15 +381,15 @@ You can point `proxy` at anything you'd like as long as it has `KEY` and `KEY-SH
 
 **Unnamed columns are trouble.** A [column without a name](https://github.com/jsoma/tabletop/issues/114) will get in the way of your data successfully coming through.
 
-## If you are having trouble
+### If you are having trouble
 
 Turn on debugging by passing `debug: true` when you initialize Tabletop. Check out the console, I try to keep my error messages chatty and informative. Or just email me at [jonathan.soma@gmail.com](mailto:jonathan.soma@gmail.com), I'm happy to help!
 
-## Tabletop.js in the wild
+### Tabletop.js in the wild
 
 **The more examples the better, right?** Feel free to fork or contact me if you have a good example of something you've done.
 
-A [contextual video player](http://www.aljazeera.com/indepth/interactive/2012/04/20124107156511888.html) with [popcorn.js](http://popcornjs.org) by [@maboa](https://twitter.com/maboa) 
+A [contextual video player](http://www.aljazeera.com/indepth/interactive/2012/04/20124107156511888.html) with [popcorn.js](http://popcornjs.org) by [@maboa](https://twitter.com/maboa)
 
 The [WNYC mayoral tracker](http://project.wnyc.org/elections/mayor-tracker/) uses Tabletop along with [Backbone.js](http://backbonejs.org)
 
@@ -380,7 +397,7 @@ A [Facebook-esque timeline](http://builtbybalance.com/github-timeline/) from [Ba
 
 [Mapsheet](https://github.com/jsoma/mapsheet) creates super easy, customizable maps.
 
-## Other Options
+### Other Options
 
 If you aren't really feeling Tabletop, you should give [Dataset](http://misoproject.com/dataset/) a shot. It's "a JavaScript client-side data transformation and management library," which means it does a hell of a lot more than our dear Tabletop.
 
