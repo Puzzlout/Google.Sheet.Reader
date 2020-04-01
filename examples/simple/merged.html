@@ -1,31 +1,33 @@
 <!DOCTYPE html>
 <html>
-  <body>
 
-    <p id="food"></p>
+<body>
 
-    <script type="text/javascript" src="../../src/tabletop.js"></script>
-    <script type="text/javascript">
-      var public_spreadsheet_url = 'https://docs.google.com/spreadsheets/d/1w3kxJ3OetcTlbAeQ_ltXgf2zLlaQztbDRdrrBdowLEs/edit';
+  <p id="food"></p>
 
-      function init() {
-        Tabletop.init( { 
-          key: public_spreadsheet_url,
-          simpleSheet: true,
-          callback: examineColumns
-        })
-      }
+  <script type="text/javascript" src="../../dist/tabletop.js"></script>
+  <script type="text/javascript">
+    var public_spreadsheet_url = 'https://docs.google.com/spreadsheets/d/1w3kxJ3OetcTlbAeQ_ltXgf2zLlaQztbDRdrrBdowLEs/edit';
 
-      function examineColumns(data, tabletop) {
-        console.log(data)
-        console.log(tabletop.sheets()['Sheet1'].prettyColumns)
-        console.log(tabletop.sheets()['Sheet1'].columnNames)
-        console.log(tabletop.sheets()['Sheet1'].originalColumns)
-      }
+    function init() {
+      Tabletop.init({
+        key: public_spreadsheet_url,
+        simpleSheet: true,
+        callback: examineColumns
+      })
+    }
 
-      window.addEventListener('DOMContentLoaded', init)
+    function examineColumns(data, tabletop) {
+      console.log(data)
+      console.log(tabletop.sheets()['Sheet1'].prettyColumns)
+      console.log(tabletop.sheets()['Sheet1'].columnNames)
+      console.log(tabletop.sheets()['Sheet1'].originalColumns)
+    }
 
-      document.write("The published spreadsheet is located at <a target='_new' href='" + public_spreadsheet_url + "'>" + public_spreadsheet_url + "</a>");        
-    </script>
-  </body>
+    window.addEventListener('DOMContentLoaded', init)
+
+    document.write("The published spreadsheet is located at <a target='_new' href='" + public_spreadsheet_url + "'>" + public_spreadsheet_url + "</a>");
+  </script>
+</body>
+
 </html>

@@ -19,14 +19,20 @@
   "readmeFilename": "README.md",
   "gitHead": "fdb1c3ee3bc0f7f3be6ab223a56f9f050fe32496",
   "devDependencies": {
+    "browser-sync": "^2.26.7",
     "chai": "^3.5.0",
-    "grunt": "^1.1.0",
-    "grunt-contrib-connect": "*",
-    "grunt-contrib-jshint": "^1.1.0",
-    "grunt-contrib-uglify": "^2.0.0",
-    "jshint-stylish": "^2.0.0",
-    "mocha": "^7.1.1",
-    "uglifyjs": "^2.4.10"
+    "del": "^5.1.0",
+    "gulp": "^4.0.2",
+    "gulp-flatmap": "^1.0.2",
+    "gulp-header": "^2.0.9",
+    "gulp-jshint": "^2.1.0",
+    "gulp-optimize-js": "^1.1.0",
+    "gulp-rename": "^2.0.0",
+    "gulp-terser": "^1.2.0",
+    "jshint": "^2.11.0",
+    "jshint-stylish": "^2.2.1",
+    "lazypipe": "^1.0.2",
+    "mocha": "^7.1.1"
   },
   "dependencies": {
     "lodash": "^4.17.12",
