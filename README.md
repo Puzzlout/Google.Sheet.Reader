@@ -1,4 +1,4 @@
-# **Google.Sheet.Read** (formaly "TableTop", gives Google Sheets legs)
+# **Google.Sheet.Reader** (inspired from "TableTop", gives Google Sheets legs)
 
 **Tabletop.js** takes a Google Spreadsheet and makes it easily accessible through JavaScript. With zero dependencies! If you've ever wanted to get JSON from a Google Spreadsheet without jumping through a thousand hoops, welcome home.
 
